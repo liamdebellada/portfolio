@@ -3,5 +3,5 @@ module.exports = {
     siteUrl: "https://www.yourdomain.tld",
     title: "liamdebell",
   },
-  plugins: [],
+  plugins: ['gatsby-plugin-layout', 'gatsby-plugin-typescript'],
 };
