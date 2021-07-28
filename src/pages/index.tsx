@@ -1,9 +1,8 @@
-import {navigate} from 'gatsby';
 import * as React from "react"
 
 const app = () => {
   return (
-    <div onClick={() => navigate('huh')}>
+    <div>
       home
     </div>
   )

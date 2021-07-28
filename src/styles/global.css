@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html {
+	height: 100%;
+}
+
+body {
+	background: white;
+	height: 100%;
+	margin: 0;
+}
+
+#___gatsby {
+	height: 100%;
+}
+
+#gatsby-focus-wrapper {
+	height: 100%;
+}
