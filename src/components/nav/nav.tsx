@@ -12,8 +12,8 @@ interface Options {
 const Bar = ({options}: {options: Options[]}) => {
 	return (
 		<div className="barParent">
-			{options.map((option) => (
-				<div className="navItem">
+			{options.map((option, i) => (
+				<div key={i} className="navItem">
 					<span 
 						onClick={() => navigate(option.route.includes("/") ? option.route : `/${option.route}`)} 
 						className="material-icons"

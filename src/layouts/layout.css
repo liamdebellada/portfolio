@@ -5,12 +5,26 @@
 }
 
 .navContainer {
-	background: green;
 	display: flex;
 	padding: 1rem;
 	justify-content: center;
 }
 
 .contentContainer {
-	background: purple;
+}
+
+.logoHeading {
+	min-height: 3rem;
+	background: red;
+	font-size: 48px;
+	font-weight: 800;
+	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 2rem;
+}
+
+.logoHeading img {
+	height: 2.5rem;
 }
