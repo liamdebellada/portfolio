@@ -1,5 +1,6 @@
 .barParent {
 	width: 100%;
+	max-width: 3rem;
 	max-height: 13rem;
 	min-height: 10rem;
 	background: #E8E8E8;

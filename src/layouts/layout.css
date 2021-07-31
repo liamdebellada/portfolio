@@ -2,11 +2,16 @@
 	display: grid;
 	grid-template-columns: 80px 1fr;
 	height: 100%;
+	background-image: url(/stripes.svg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
 }
 
 .navContainer {
 	display: flex;
 	padding: 1rem;
+	padding-right: 0;
+	padding-top: 1.5rem;
 	justify-content: center;
 }
 
@@ -15,7 +20,6 @@
 
 .logoHeading {
 	min-height: 3rem;
-	background: red;
 	font-size: 48px;
 	font-weight: 800;
 	background: white;

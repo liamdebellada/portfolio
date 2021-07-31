@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 import './splash.css';
 
-const SplashScreen = ({loading}: {loading: boolean}) => {
+const SplashScreen = () => {
 	return (
 		<AnimatePresence>
 				<motion.div 
