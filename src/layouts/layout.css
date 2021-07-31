@@ -1,6 +1,6 @@
 .parent {
 	display: grid;
-	grid-template-columns: 80px 1fr;
+	grid-template-columns: 100px 1fr;
 	height: 100%;
 	background-image: url(/stripes.svg);
 	background-repeat: no-repeat;
@@ -9,13 +9,13 @@
 
 .navContainer {
 	display: flex;
-	padding: 1rem;
-	padding-right: 0;
 	padding-top: 1.5rem;
 	justify-content: center;
 }
 
 .contentContainer {
+	display: flex;
+	flex-direction: column;
 }
 
 .logoHeading {
