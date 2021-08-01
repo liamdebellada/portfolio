@@ -18,6 +18,12 @@
 	flex-direction: column;
 }
 
+.contentParent {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
 .logoHeading {
 	min-height: 3rem;
 	font-size: 48px;

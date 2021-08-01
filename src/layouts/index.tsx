@@ -40,7 +40,9 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 						<motion.div onLayoutAnimationComplete={() => console.log("ended")} layoutId="header" className="logoHeading">
 							<motion.img layoutId="logo" src="/liam.svg"/>
 						</motion.div>
-						{children}
+						<div className="contentParent">
+							{children}
+						</div>
 					</div>
 				</motion.div>
 			</AnimatePresence>
