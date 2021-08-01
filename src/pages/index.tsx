@@ -1,6 +1,9 @@
 import * as React from "react"
 import './index.css';
 
+//lib
+import {motion} from 'framer-motion';
+
 //components
 import Heading from '../components/heading/heading';
 import ScreenDeck from '../components/screenDeck/screenDeck';
@@ -24,16 +27,22 @@ const app = () => {
               <div className="face">
                 <img className="primaryFace" src="/face1.jpeg"/>
               </div>
-              <div className="face">
+              <motion.div initial={{left: 0}} transition={{delay: 0.1}} animate={{left: "170px"}} className="face">
                 <img className="primaryFace secondaryFace" src="/face2.png"/>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
       <div className="homeBottom">
         <div className="workingImage">
-          <ScreenDeck/>
+          <ScreenDeck options={
+            [
+              {image: "/screens/colony.png"},
+              {image: "/screens/mink.png"},
+              {image: "/screens/needles.png"}
+            ]
+          }/>
         </div>
         <div className="workingText">
           <Heading options={{text: "What I've been working on?"}}/>
