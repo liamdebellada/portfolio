@@ -15,7 +15,6 @@ const ScreenDeck = ({options} : {options: DeckOptions[]}) => {
 				let imageUrl = item.image;
 				if (i > 0) {
 					let cssRotate = i % 3 == 1 ? `${rotationAngle}deg` : `-${rotationAngle}deg`;
-					console.log(cssRotate)
 					let cssLr = i % 3 == 1 ? "right" : "left";
 					return (
 						<motion.div 

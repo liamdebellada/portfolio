@@ -19,7 +19,7 @@ const app = () => {
             I’m Liam. I have a passion for the art of software development, and love writing both backend and front-end code, with an emphasis on speed.
             </p>
             <p className="bioDescription">
-            I’m Liam. I have a passion for the art of software development, and love writing both backend and front-end code, with an emphasis on speed.
+            I’m 18 Years old, and currenlty live in the United Kingdom. I enjoy running and the small things in life.
             </p>
           </div>
           <div className="imageSection">

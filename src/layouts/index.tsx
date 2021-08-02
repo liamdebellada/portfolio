@@ -31,10 +31,10 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 					<div className="navContainer">
 						<Bar options={[
 							{name: "home", icon: "home", route: "/"},
-							{name: "projects", icon: "integration_instructions", route: "projects"},
-							{name: "blog", icon: "import_contacts", route: "blog"},
-							{name: "stats", icon: "insert_chart_outlined", route: "stats"},
-						]}/>
+							{name: "projects", icon: "integration_instructions", route: "/projects/"},
+							{name: "blog", icon: "import_contacts", route: "/blog/"},
+							{name: "stats", icon: "insert_chart_outlined", route: "/stats/"},
+						]} path={path}/>
 					</div>
 					<div className="contentContainer">
 						<motion.div onLayoutAnimationComplete={() => console.log("ended")} layoutId="header" className="logoHeading">

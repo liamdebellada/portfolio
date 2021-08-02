@@ -19,3 +19,10 @@ body {
 #gatsby-focus-wrapper {
 	height: 100%;
 }
+
+.noselect {
+	-webkit-user-select: none;      
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

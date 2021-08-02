@@ -9,14 +9,14 @@ interface Options {
 	route: string
 }
 
-const Bar = ({options}: {options: Options[]}) => {
+const Bar = ({options, path}: {options: Options[], path: string}) => {
 	return (
 		<div className="barParent">
 			{options.map((option, i) => (
-				<div key={i} className="navItem">
+				<div key={i} className="navItem noselect">
 					<span 
-						onClick={() => navigate(option.route.includes("/") ? option.route : `/${option.route}`)} 
-						className="material-icons"
+						onClick={() => navigate(option.route)} 
+						className={option.route == path ? "navItemActive material-icons" : "material-icons"}
 						>
 							{option.icon}
 					</span>
