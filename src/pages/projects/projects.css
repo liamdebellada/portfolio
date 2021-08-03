@@ -32,6 +32,44 @@
 .textArea {
 	display: flex;
 	flex-direction: column;
-
 	padding-left: 1rem;
+	max-height: 332px;
+	overflow: hidden;
+}
+
+.contentInfo {
+	display: flex;
+	height: 100%;
+}
+
+.contentInfoText {
+	display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	width: 50%;
+}
+
+.contentInfoText p {
+	overflow: hidden;
+}
+
+.contentInfoImages {
+	width: 50%;
+	display: grid;
+	grid-template-rows: 0.8fr 50px;
+	overflow: hidden;
+}
+
+.images {
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.images img {
+	height: 100%;
+	object-fit: contain;
 }
