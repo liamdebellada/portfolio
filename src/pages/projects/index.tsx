@@ -14,14 +14,14 @@ const PathItem = ({startNode}: {startNode?: boolean}) => {
 	const handleComplete = () => {
 		animation.start({
 			scale: 1,
-			transition: { duration: 0.2 }
+			transition: { duration: 0.1 }
 		})
 	}
 
 	return (
 		<>
 		{startNode && (
-			<motion.div className="circle"/>
+			<motion.div initial={{scale: 0}} animate={animation} className="circle"/>
 		)}
 			<svg width="4" height="300" xmlns="http://www.w3.org/2000/svg">
 				<motion.path 
@@ -33,7 +33,6 @@ const PathItem = ({startNode}: {startNode?: boolean}) => {
 				onAnimationComplete={handleComplete}
 				/>
 			</svg>
-			<motion.div initial={{scale: 0}} animate={animation} className="circle"/>
 		</>
 	)
 }
@@ -47,16 +46,17 @@ export default function huh() {
 				All of my personal projects are open-source and available to fork, download and contribute to on GitHub. 
 				</p>
 			</div>
-			<div className="contentArea">
-				<div className="progressArea">
-					{[1,2,3,4].map((_, i) => (
-						<PathItem startNode={i == 0 ? true : false } />
-					))}
+
+			{[1,2,3,4].map((item, i) => (
+				<div className="contentArea">
+					<div className="progressArea">
+						<PathItem startNode={true} />
+					</div>
+					<div className="textArea">
+						<Heading options={{text: "RSN Archive", size: "2rem"}}/>
+					</div>
 				</div>
-				<div className="textArea">
-					content
-				</div>
-			</div>
+			))}
 		</div>
 	)
 }

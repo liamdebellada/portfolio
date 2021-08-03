@@ -28,3 +28,10 @@
 	align-items: center;
 	justify-content: center;
 }
+
+.textArea {
+	display: flex;
+	flex-direction: column;
+
+	padding-left: 1rem;
+}
