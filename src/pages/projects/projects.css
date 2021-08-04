@@ -73,3 +73,11 @@
 	height: 100%;
 	object-fit: contain;
 }
+
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem;
+	padding-bottom: 0;
+}
