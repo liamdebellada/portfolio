@@ -6,13 +6,30 @@ import Heading from '../../components/heading/heading';
 
 //lib
 import {motion, useAnimation} from 'framer-motion';
+const container = {
+	hidden: { opacity: 0 },
+	show: {
+	  opacity: 1,
+	  transition: {
+		staggerChildren: 0.5,
+	  }
+	}
+  }
+  
+  const item_var = {
+	hidden: { pathLength: 0 },
+	show: { pathLength: 1, transition: {
+		duration: 1
+	}}
+  }
 
 const PathItem = ({index} : {index: number}) => {
 	const animation = useAnimation();
 	const handleComplete = () => {
+		console.log("complete")
 		animation.start({
 			scale: 1,
-			transition: { duration: 0.3, type: "spring", damping: 9}
+			transition: { duration: 0.3, type: "spring", damping: 9, delay: -1, when: "beforeChildren"}
 		})
 	}
 
@@ -23,9 +40,7 @@ const PathItem = ({index} : {index: number}) => {
 				<motion.path 
 				d="M 2,2 v 300" 
 				stroke="#000"
-				initial={{pathLength: 0}}
-				animate={{pathLength: 1}}
-				transition={{duration: 1}}
+				variants={item_var}
 				onAnimationComplete={handleComplete}
 				/>
 			</svg>
@@ -42,13 +57,13 @@ export default function huh() {
 				All of my personal projects are open-source and available to fork, download and contribute to on GitHub. 
 				</p>
 			</div>
-
-			{[1,2].map((item, i) => (
+			<motion.div initial="hidden" animate="show" variants={container}>
+			{[1,2,3,4].map((item, i) => (
 				<div className="contentArea">
 					<div className="progressArea">
 						<PathItem index={i}/>
 					</div>
-					<motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.2}} className="textArea">
+					<motion.div className="textArea">
 						<Heading options={{text: "RSN Archive", size: "2rem"}}/>
 						<div className="contentInfo">
 							<div className="contentInfoText">
@@ -67,6 +82,7 @@ export default function huh() {
 					</motion.div>
 				</div>
 			))}
+			</motion.div>
 		</div>
 	)
 }
