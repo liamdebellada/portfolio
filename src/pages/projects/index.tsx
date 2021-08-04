@@ -23,19 +23,28 @@ const container = {
 	}}
   }
 
+  const node_var = {
+	  hidden: {scale: 0},
+	  show: {
+		  scale: 1, transition : {
+				duration: 0.3, type: "spring", damping: 9
+		  }
+	  }
+  }
+
 const PathItem = ({index} : {index: number}) => {
 	const animation = useAnimation();
 	const handleComplete = () => {
 		console.log("complete")
-		animation.start({
-			scale: 1,
-			transition: { duration: 0.3, type: "spring", damping: 9, delay: -1, when: "beforeChildren"}
-		})
+		// animation.start(() => ({
+		// 	scale: 1,
+		// 	transition: { duration: 0.3, type: "spring", damping: 9, delay: -1, when: "beforeChildren"}
+		// }))
 	}
 
 	return (
 		<>
-			<motion.div initial={{scale: index == 0 ? 1 : 0}} animate={animation} className="circle"/>
+			<motion.div variants={node_var} className="circle"/>
 			<svg width="4" height="300" xmlns="http://www.w3.org/2000/svg">
 				<motion.path 
 				d="M 2,2 v 300" 
