@@ -2,4 +2,62 @@
 	width: 100%;
 	max-width: 1100px;
 	height: 100%;
+	display: grid;
+	grid-template-rows: 50%;
+}
+
+.contactListParent {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.aboutParent {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.descriptionText {
+	font-weight: 600;
+	font-size: 1.2rem;
+	max-width: 500px;
+	margin-top: 0;
+}
+
+.socialListParent {
+	display: flex;
+	flex-direction: column;
+}
+
+.socialItem {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.socialItem span {
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+.socialItem img {
+	margin-right: 0.6rem;
+	height: 2.5rem;
+	width: 2.5rem;
+}
+
+.techStackList {
+	margin-top: 1rem;
+	display: flex;
+}
+
+.techStackItem {
+	height: 2.5rem;
+	width: 2.5rem;
+}
+
+.techStackItem:not(:last-child) {
+	margin-right: 1.5rem;
 }
