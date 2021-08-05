@@ -11,30 +11,34 @@ import {motion} from 'framer-motion';
 const container = {
 	hidden: { opacity: 0 },
 	show: {
-	  opacity: 1,
-	  transition: {
-		staggerChildren: 0.3,
-	  }
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.3,
+		}
 	}
-  }
+}
   
-  const item_var = {
+const item_var = {
 	hidden: { pathLength: 0 },
-	show: { pathLength: 1, transition: {
-		duration: 0.5
-	}}
-  }
+	show: { 
+		pathLength: 1, 
+		transition: {
+			duration: 0.5
+		}
+	}
+}
 
-  const node_var = {
-	  hidden: {scale: 0},
-	  show: {
-		  scale: 1, transition : {
+const node_var = {
+	hidden: {	scale: 0 },
+	show: {
+		scale: 1, 
+		transition : {
 			duration: 0.2, type: "spring", damping: 9
-		  }
-	  }
-  }
+		}
+	}
+}
 
-const PathItem = ({index} : {index: number}) => {
+const PathItem = () => {
 	return (
 		<>
 			<motion.div variants={node_var} className="circle"/>
@@ -62,7 +66,7 @@ export default function huh() {
 			{[1,2,3,4].map((item, i) => (
 				<div className="contentArea">
 					<div className="progressArea">
-						<PathItem index={i}/>
+						<PathItem/>
 					</div>
 					<motion.div className="textArea">
 						<Heading options={{text: "RSN Archive", size: "2rem"}}/>

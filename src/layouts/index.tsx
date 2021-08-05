@@ -33,7 +33,7 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 							{name: "home", icon: "home", route: "/"},
 							{name: "projects", icon: "integration_instructions", route: "/projects/"},
 							{name: "blog", icon: "import_contacts", route: "/blog/"},
-							{name: "stats", icon: "insert_chart_outlined", route: "/stats/"},
+							{name: "contact", icon: "account_box", route: "/contact/"},
 						]} path={path}/>
 					</div>
 					<div className="contentContainer">
