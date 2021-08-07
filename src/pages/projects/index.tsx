@@ -7,6 +7,7 @@ import RepoButton from '../../components/buttons/repoButton/repoButton';
 
 //lib
 import {motion} from 'framer-motion';
+import { graphql } from 'gatsby';
 
 const container = {
 	hidden: { opacity: 0 },
@@ -53,7 +54,8 @@ const PathItem = () => {
 	)
 }
 
-export default function huh() {
+export default function huh({data}: {data: any}) {
+	var {allGithubProjectsParent} = data;
 	return (
 		<div className="projectsParent">
 			<div className="projectsHeading">
@@ -63,13 +65,13 @@ export default function huh() {
 				</p>
 			</div>
 			<motion.div initial="hidden" animate="show" variants={container}>
-			{[1,2,3,4].map((item, i) => (
-				<div className="contentArea">
+			{allGithubProjectsParent.nodes.map((item: any, i: number) => (
+				<div key={i} className="contentArea">
 					<div className="progressArea">
 						<PathItem/>
 					</div>
 					<motion.div className="textArea">
-						<Heading options={{text: "RSN Archive", size: "2rem"}}/>
+						<Heading options={{text: item.name, size: "2rem"}}/>
 						<div className="contentInfo">
 							<div className="contentInfoText">
 								<p className="descriptionText">RSN Archive provides a blazing fast image browser for the Royal School of Needlework. The application is written in Rust and Svelte to provide the fastest possible performance available.</p>
@@ -91,3 +93,13 @@ export default function huh() {
 		</div>
 	)
 }
+
+export const query = graphql`
+	query {
+		allGithubProjectsParent {
+			nodes {
+				name
+			}
+		}
+	}
+`
