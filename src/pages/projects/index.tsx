@@ -54,8 +54,7 @@ const PathItem = () => {
 	)
 }
 
-export default function huh({data}: {data: any}) {
-	var {allGithubProjectsParent} = data;
+export default function huh({data} : {data: any}) {
 	return (
 		<div className="projectsParent">
 			<div className="projectsHeading">
@@ -65,21 +64,21 @@ export default function huh({data}: {data: any}) {
 				</p>
 			</div>
 			<motion.div initial="hidden" animate="show" variants={container}>
-			{allGithubProjectsParent.nodes.map((item: any, i: number) => (
+			{data.Projects.map((item: any, i: number) => (
 				<div key={i} className="contentArea">
 					<div className="progressArea">
 						<PathItem/>
 					</div>
 					<motion.div className="textArea">
-						<Heading options={{text: item.name, size: "2rem"}}/>
+						<Heading options={{text: item.file_data.content.display_title, size: "2rem"}}/>
 						<div className="contentInfo">
 							<div className="contentInfoText">
-								<p className="descriptionText">RSN Archive provides a blazing fast image browser for the Royal School of Needlework. The application is written in Rust and Svelte to provide the fastest possible performance available.</p>
-								<p className="descriptionText">Working with staff at the Royal School of Needlework, I was able to accurately meet client requirements communicating remotely through emails and video calls.</p>
+								<p className="descriptionText projectDescription">{item.file_data.content.short_description}</p>
+								<p className="descriptionText projectDescription">Working with staff at the Royal School of Needlework, I was able to accurately meet client requirements communicating remotely through emails and video calls.</p>
 							</div>
 							<div className="contentInfoImages">
 								<div className="images">
-									<img src="/collections/needles.png"/>
+									<img src={item.file_data.content.display_image}/>
 								</div>
 								<div className="buttons">
 									<RepoButton/>
@@ -95,11 +94,19 @@ export default function huh({data}: {data: any}) {
 }
 
 export const query = graphql`
-	query {
-		allGithubProjectsParent {
-			nodes {
-				name
-			}
-		}
-	}
+query {
+  Projects {
+    name
+    html_url
+    file_data {
+      content {
+        short_description
+        raw_md
+        display_title
+        repo_url
+		display_image
+      }
+    }
+  }
+}
 `

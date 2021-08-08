@@ -7,6 +7,7 @@ import {motion} from 'framer-motion';
 //components
 import Heading from '../components/heading/heading';
 import ScreenDeck from '../components/screenDeck/screenDeck';
+import { graphql } from "gatsby";
 
 const app = () => {
   return (

@@ -10,6 +10,10 @@
 	max-width: 500px;
 }
 
+.projectDescription {
+	margin-top: 1rem;
+}
+
 .circle {
 	border-radius: 50%;
 	height: 2rem;

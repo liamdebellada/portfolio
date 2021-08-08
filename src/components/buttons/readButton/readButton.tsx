@@ -1,9 +1,14 @@
+import { navigate } from 'gatsby';
 import React from 'react';
 import './readButton.css';
 
-const ReadButton = () => {
+interface Options {
+	url: string
+}
+
+const ReadButton = ({options} : {options: Options}) => {
 	return (
-		<button className="readBtn">
+		<button onClick={() => navigate(options.url)} className="readBtn">
 			Read
 		</button>
 	)
