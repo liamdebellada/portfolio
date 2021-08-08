@@ -7,11 +7,9 @@ import Splash from '../components/splash/splash';
 import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 
 const layout = ({children, path, location} : {children: React.ReactNode, path: string, location: any})=> {
-	const [isLoading, setLoading] = React.useState(path == "/" ? true : false);
+	const [isLoading, setLoading] = React.useState(true);
 
-	if (path == "/") {
-		setTimeout(() => setLoading(false), 1000);
-	}
+	setTimeout(() => setLoading(false), 1000);
 
 	const hiddenBackground = {backgroundPositionX: "calc(200% + 0px)", backgroundPositionY: "calc(200% + 0px)"}
 
