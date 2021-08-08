@@ -7,9 +7,13 @@ const path = require(`path`)
 const GIT_PROJECTS = "https://api.github.com/repos/liamdebellada/portfolio-data/contents/Projects?ref=master";
 const GIT_BLOGS = "https://api.github.com/repos/liamdebellada/portfolio-data/contents/Blogs?ref=master";
 
+const config = {
+	headers: { Authorization: `token ${keys.github}` }
+}
+
 const dataFetch = async (git_items) => {
 	return git_items.map(async (item) => {
-		let fileData = await fetch(item.git_url)
+		let fileData = await fetch(item.git_url, config)
 		.then(data => data.json())
 		.then(data => {
 			let parser = new showdown.Converter();
@@ -34,7 +38,7 @@ exports.createResolvers = async ({ createResolvers, schema }) => {
 			Projects: {
 				type: "[GithubItem!]!",
 				async resolve(source, args, context, info) {
-					return await fetch(GIT_PROJECTS).then(data => data.json()).then(async data => {
+					return await fetch(GIT_PROJECTS, config).then(data => data.json()).then(async data => {
 						data = await dataFetch(data);
 						return data;
 					}).catch(e => e);
@@ -43,7 +47,7 @@ exports.createResolvers = async ({ createResolvers, schema }) => {
 			Blogs: {
 				type: "[GithubItem!]!",
 				async resolve(source, args, context, info) {
-					return await fetch(GIT_BLOGS).then(data => data.json()).then(async data => {
+					return await fetch(GIT_BLOGS, config).then(data => data.json()).then(async data => {
 						data = await dataFetch(data);
 						return data;
 					}).catch(e => e);
