@@ -41,6 +41,7 @@
 	align-items: center;
 	width: max-content;
 	position: relative;
+	transform: translateX(80px)
 }
 
 .face {
@@ -59,9 +60,7 @@
 .face:nth-child(2) {
 	height: 12rem;
 	width: 12rem;
-	position: absolute;
 	z-index: -2;
-	left: 170px;
 }
 
 .secondaryFace {
@@ -94,7 +93,7 @@
 	}
 
 	.faces {
-		width: 362px;
+		transform: translateX(30px)
 	}
 
 	.face:nth-child(1) {
@@ -133,6 +132,13 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		width: 0;
+		min-width: 100%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.faces {
 		width: 0;
 		min-width: 100%;
 	}

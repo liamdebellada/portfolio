@@ -33,7 +33,7 @@ const app = () => {
               <div className="face">
                 <img className="primaryFace" src="/face1.jpeg"/>
               </div>
-              <motion.div initial={{left: 0}} transition={{delay: 0.1}} animate={{left: "170px"}} className="face">
+              <motion.div initial={{left: 0}} transition={{delay: 0.1}} animate={{x: -60}} className="face">
                 <img className="primaryFace secondaryFace" src="/face2.png"/>
               </motion.div>
             </div>
@@ -61,8 +61,8 @@ const app = () => {
                 fixedWidth: "5rem"
               }}
             >
-              {[1,2,3].map(() => (
-              <SplideSlide>
+              {[1,2,3].map((i) => (
+              <SplideSlide key={i}>
                 <Slide/>
               </SplideSlide>
               ))}

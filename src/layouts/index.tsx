@@ -37,16 +37,16 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 				className="parent"
 				style={{gridTemplateColumns: size[0] != null && size[0] > 600 ? "100px 1fr" : "1fr"}}
 				>
+					{size[0] != null && size[0] > 600 && (
 					<div className="navContainer">
-						{size[0] != null && size[0] > 600 && (
 							<Bar options={[
 								{name: "home", icon: "home", route: "/"},
 								{name: "projects", icon: "integration_instructions", route: "/projects/"},
 								{name: "blog", icon: "import_contacts", route: "/blog/"},
 								{name: "contact", icon: "account_box", route: "/contact/"},
 							]} path={path}/>
-						)}
 					</div>
+					)}
 					<div className="contentContainer">
 						<motion.div layoutId="header" className="logoHeading">
 							<motion.div className="smallBarParent" initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.5}}>
