@@ -9,6 +9,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
+	transition: 0.2s ease-in-out;
 }
 
 .navItem {
@@ -21,4 +22,15 @@
 
 .navItemActive {
 	color: black;
+}
+
+.smallSize {
+	height: 3rem;
+	width: 3rem;
+	min-height: 0;
+}
+
+.expandedNav {
+	position: absolute;
+	height: 12rem;
 }

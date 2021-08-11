@@ -2,6 +2,7 @@ import React from 'react';
 import './nav.css';
 
 import {navigate} from 'gatsby';
+import {motion} from 'framer-motion';
 
 interface Options {
 	icon: string,
@@ -10,9 +11,27 @@ interface Options {
 }
 
 const Bar = ({options, path}: {options: Options[], path: string}) => {
+
+	const [size, setSize] = React.useState<number[] | null[]>([null, null]);
+
+	const [expanded, setExpanded] = React.useState(false);
+
+	React.useEffect(() => {
+		
+		setSize([window.innerWidth, window.innerHeight])
+
+		window.addEventListener('resize', (e) => {
+			setSize([window.innerWidth, window.innerHeight])
+		})
+	}, [])
+
+	React.useEffect(() => {
+		console.log(expanded)
+	}, [expanded]);
+
 	return (
-		<div className="barParent">
-			{options.map((option, i) => (
+		<motion.div transition={{duration: 1}} className={size[0] != null && size[0] > 600 ? "barParent fullSize" : "barParent smallSize" + (expanded ? " expandedNav" : "")} onClick={() => size[0] != null && size[0] > 600 ? undefined : setExpanded(expanded ? false : true) }>
+			{size[0] != null && size [0] > 600 ? options.map((option, i) => (
 				<div key={i} className="navItem noselect">
 					<span 
 						onClick={() => navigate(option.route)} 
@@ -21,8 +40,10 @@ const Bar = ({options, path}: {options: Options[], path: string}) => {
 							{option.icon}
 					</span>
 				</div>
-			))}
-		</div>
+			)) : (
+				<span className="material-icons noselect">menu</span>
+			)}
+		</motion.div>
 	)
 }
 

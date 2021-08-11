@@ -1,5 +1,5 @@
 {
-	"include": ["./src/**/*"],
+	"include": ["./src/**/*", "./node_modules/@splidejs/splide/src/js/splide.d.ts"],
 	"compilerOptions": {
 	  "target": "esnext",
 	  "module": "esnext",
@@ -13,4 +13,4 @@
 	  "skipLibCheck": true,
 	  "moduleResolution": "node"
 	}
-  }
+}

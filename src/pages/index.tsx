@@ -4,14 +4,19 @@ import './index.css';
 //lib
 import {motion} from 'framer-motion';
 
+// @ts-ignore
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+
 //components
 import Heading from '../components/heading/heading';
 import ScreenDeck from '../components/screenDeck/screenDeck';
-import { graphql } from "gatsby";
+import Slide from '../components/slide/slide';
 
 const app = () => {
   return (
     <div className="homeParent">
+      <title>Home</title>
       <div className="homeTop">
         <Heading options={{text: "Bio"}}/>
         <div className="bioContent">
@@ -44,6 +49,25 @@ const app = () => {
               {image: "/screens/needles.png"}
             ]
           }/>
+          <div className="splideList">
+            <Splide
+              options={{
+                arrows: false,
+                pagination: false,
+                autoWidth: true,
+                autoHeight: true,
+                height: "9rem",
+                gap: "20px",
+                fixedWidth: "5rem"
+              }}
+            >
+              {[1,2,3].map(() => (
+              <SplideSlide>
+                <Slide/>
+              </SplideSlide>
+              ))}
+            </Splide>
+          </div>
         </div>
         <div className="workingText">
           <Heading options={{text: "What I've been working on?"}}/>
