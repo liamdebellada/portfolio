@@ -23,6 +23,7 @@ const socials = [
 const Contact = () => {
 	return (
 		<div className="contactParent">
+			<title>Contact</title>
 			<div className="contactListParent">
 				<Heading options={{text: "Contact"}}/>
 				<p className="descriptionText">You can checkout what I’m working on or get in contact with me through these channels: </p>
@@ -37,7 +38,7 @@ const Contact = () => {
 			</div>
 			<div className="aboutParent">
 				<Heading options={{text: "About"}}/>
-				<p className="descriptionText">You can checkout what I’m working on or get in contact with me through these channels: The source-code for my portfolio is available here: github.com/asd. The platform is written in typescript and Gatsby, with mostly pure css and html markup used for animations and rendering!</p>
+				<p className="descriptionText">You can checkout what I’m working on or get in contact with me through these channels: The source-code for my portfolio is available here: {<span style={{fontWeight: 800, cursor: "pointer"}} onClick={() => navigate("https://github.com/liamdebellada/portfolio")}>github.com/asd</span>}. The platform is written in typescript and Gatsby, with mostly pure css and html markup used for animations and rendering!</p>
 				<div className="techStackList">
 					{techStack.map((item) => (
 						<img className="techStackItem" src={item.icon}/>

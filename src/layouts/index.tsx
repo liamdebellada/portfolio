@@ -43,7 +43,6 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 					</div>
 					)}
 					<motion.div 
-					key="stripes"
 					exit={hiddenBackground} 
 					initial={hiddenBackground}
 					animate={{backgroundPositionX: "calc(100% + 150px)", backgroundPositionY: "calc(100% + 200px)"}}

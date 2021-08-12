@@ -59,6 +59,7 @@ export default function huh({data} : {data: any}) {
 
 	return (
 		<div className="projectsParent">
+			<title>Projects</title>
 			<div className="projectsHeading">
 				<Heading options={{text: "Projects"}}/>
 				<p className="descriptionText">
@@ -83,7 +84,7 @@ export default function huh({data} : {data: any}) {
 									<img src={item.file_data.content.display_image}/>
 								</div>
 								<div className="buttons">
-									<RepoButton/>
+									<RepoButton link={item.file_data.content.repo_url as string}/>
 								</div>
 							</div>
 						</div>

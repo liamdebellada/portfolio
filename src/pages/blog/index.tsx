@@ -12,6 +12,7 @@ import { graphql } from 'gatsby';
 const Blog = ({data} : {data: any}) => {
 	return (
 		<div className="blogParent">
+			<title>Blog</title>
 			<div className="blogHeading">
 				<Heading options={{text: "Blog"}}/>
 				<p className="descriptionText">Here are a series of blogs that I am writing in conjunction with my software development experience.</p>

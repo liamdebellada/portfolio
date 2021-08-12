@@ -2,6 +2,7 @@ const fetch = require(`node-fetch`);
 const keys = require('./keys.json');
 const showdown  = require('showdown')
 const path = require(`path`)
+const stringReplaceAll = require('string-replace-all');
 
 //endpoints
 const GIT_PROJECTS = "https://api.github.com/repos/liamdebellada/portfolio-data/contents/Projects?ref=master";
@@ -21,7 +22,20 @@ const dataFetch = async (git_items) => {
 			json_content = json_content.toString();
 			let parsed_json = JSON.parse(json_content);
 
-			parsed_json.raw_md = parser.makeHtml(parsed_json.raw_md);
+			parsed_json.raw_md = parser.makeHtml(parsed_json.raw_md)
+			console.log("replacing")
+
+
+			let invalid = parsed_json.raw_md.split("\n");
+
+			invalid = invalid.map((s) => {
+				s = stringReplaceAll(s, "\n", " ");
+				return stringReplaceAll(s, "\\n", " ");
+			}).join("")
+
+			parsed_json.raw_md = invalid;
+
+
 			data.content = parsed_json;
 			return data;
 		})

@@ -1,9 +1,10 @@
+import { navigate } from 'gatsby';
 import React from 'react';
 import './repoButton.css';
 
-const RepoButton = () => {
+const RepoButton = ({link}: any) => {
 	return (
-		<button className="btn">view repository</button>
+		<button onClick={() => navigate(link)} className="btn">view repository</button>
 	)
 }
 

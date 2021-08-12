@@ -3,8 +3,9 @@ import './index.css';
 
 //lib
 import {motion} from 'framer-motion';
+import {graphql} from 'gatsby';
 
-// @ts-ignore
+//@ts-ignore
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
@@ -13,12 +14,7 @@ import Heading from '../components/heading/heading';
 import ScreenDeck from '../components/screenDeck/screenDeck';
 import Slide from '../components/slide/slide';
 
-const app = () => {
-
-  if (typeof window === "undefined") {
-    return <p>Server Render</p>
-  }
-
+const app = ({data} : {data: any}) => {
   return (
     <div className="homeParent">
       <title>Home</title>
@@ -38,7 +34,7 @@ const app = () => {
               <div className="face">
                 <img className="primaryFace" src="/face1.jpeg"/>
               </div>
-              <motion.div initial={{left: 0}} transition={{delay: 0.1}} animate={{x: -60}} className="face">
+              <motion.div initial={{x: "-14rem"}} transition={{delay: 0.1}} animate={{x: -50}} className="face">
                 <img className="primaryFace secondaryFace" src="/face2.png"/>
               </motion.div>
             </div>
@@ -56,22 +52,22 @@ const app = () => {
           }/>
           <div className="splideList">
             <Splide
-              options={{
-                arrows: false,
-                pagination: false,
-                autoWidth: true,
-                autoHeight: true,
-                height: "9rem",
-                gap: "20px",
-                fixedWidth: "5rem"
-              }}
-            >
-              {[1,2,3].map((i) => (
-              <SplideSlide key={i}>
-                <Slide/>
-              </SplideSlide>
-              ))}
-            </Splide>
+                options={{
+                  arrows: false,
+                  pagination: false,
+                  autoWidth: true,
+                  autoHeight: true,
+                  height: "9rem",
+                  gap: "20px",
+                  fixedWidth: "5rem"
+                }}
+              >
+                {data.Projects.map((item: any, i: number) => (
+                <SplideSlide key={i}>
+                  <Slide item={item}/>
+                </SplideSlide>
+                ))}
+              </Splide>
           </div>
         </div>
         <div className="workingText">
@@ -82,5 +78,24 @@ const app = () => {
     </div>
   )
 }
+
+
+export const query = graphql`
+query {
+  Projects {
+    name
+    html_url
+    file_data {
+      content {
+        short_description
+        raw_md
+        display_title
+        repo_url
+		display_image
+      }
+    }
+  }
+}
+`
 
 export default app;
