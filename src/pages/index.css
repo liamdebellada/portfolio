@@ -142,4 +142,16 @@
 		width: 0;
 		min-width: 100%;
 	}
+
+	.descriptionSection {
+		width: 100%;
+	}
+
+	.bioDescription {
+		width: 100%;
+	}
+
+	.workingText {
+		width: 100%;
+	}
 }

@@ -14,7 +14,7 @@ const container = {
 	show: {
 		opacity: 1,
 		transition: {
-			staggerChildren: 0.3,
+			staggerChildren: 0.35,
 		}
 	}
 }
@@ -24,7 +24,7 @@ const item_var = {
 	show: { 
 		pathLength: 1, 
 		transition: {
-			duration: 0.5
+			duration: 1
 		}
 	}
 }
@@ -43,10 +43,11 @@ const PathItem = () => {
 	return (
 		<>
 			<motion.div variants={node_var} className="circle"/>
-			<svg width="4" height="300" xmlns="http://www.w3.org/2000/svg">
+			<svg preserveAspectRatio="none" width="7" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 2 5 60">
 				<motion.path 
 				d="M 2,2 v 300" 
-				stroke="#000"
+				height="100%"
+				stroke="#939393"
 				variants={item_var}
 				/>
 			</svg>
@@ -55,6 +56,7 @@ const PathItem = () => {
 }
 
 export default function huh({data} : {data: any}) {
+
 	return (
 		<div className="projectsParent">
 			<div className="projectsHeading">

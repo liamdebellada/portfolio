@@ -29,11 +29,6 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 			) : (
 			<AnimatePresence>
 				<motion.div 
-				key="stripes"
-				exit={hiddenBackground} 
-				initial={hiddenBackground}
-				animate={{backgroundPositionX: "calc(100% + 150px)", backgroundPositionY: "calc(100% + 200px)"}}
-				transition={{duration: 0.5, type: "spring", stiffness: 60, damping: 12}}
 				className="parent"
 				style={{gridTemplateColumns: size[0] != null && size[0] > 600 ? "100px 1fr" : "1fr"}}
 				>
@@ -47,7 +42,13 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 							]} path={path}/>
 					</div>
 					)}
-					<div className="contentContainer">
+					<motion.div 
+					key="stripes"
+					exit={hiddenBackground} 
+					initial={hiddenBackground}
+					animate={{backgroundPositionX: "calc(100% + 150px)", backgroundPositionY: "calc(100% + 200px)"}}
+					transition={{duration: 0.5, type: "spring", stiffness: 60, damping: 12}}
+					className="contentContainer">
 						<motion.div layoutId="header" className="logoHeading">
 							<motion.div className="smallBarParent" initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.5}}>
 								{size[0] != null && size[0] < 600 && (
@@ -64,7 +65,7 @@ const layout = ({children, path, location} : {children: React.ReactNode, path: s
 						<div className="contentParent">
 							{children}
 						</div>
-					</div>
+					</motion.div>
 				</motion.div>
 			</AnimatePresence>
 			)}

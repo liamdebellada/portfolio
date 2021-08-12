@@ -85,3 +85,39 @@
 	padding: 0.5rem;
 	padding-bottom: 0;
 }
+
+@media only screen and (max-width: 890px) {
+	.contentInfo {
+		flex-direction: column;
+		margin-bottom: 2rem;
+	}
+
+	.textArea {
+		max-height: none;
+	}
+
+	.projectDescription {
+		width: 100%;
+	}
+
+	.contentInfoText {
+		width: 100%;
+	}
+
+	.images img {
+		width: 100%;
+	}
+
+	.contentInfoImages {
+		width: 100%;
+	}
+
+	.projectsParent {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	.projectsHeading {
+		margin-bottom: 2rem;
+	}
+}

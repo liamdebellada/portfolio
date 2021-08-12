@@ -2,9 +2,6 @@
 	display: grid;
 	grid-template-columns: 100px 1fr;
 	height: 100%;
-	background-image: url(/stripes.svg);
-	background-repeat: no-repeat;
-	background-position: right bottom;
 }
 
 .navContainer {
@@ -16,6 +13,9 @@
 .contentContainer {
 	display: flex;
 	flex-direction: column;
+	background-image: url(/stripes.svg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
 }
 
 .contentParent {

@@ -3,7 +3,9 @@
 
 html {
 	height: 100%;
+	margin: 0;
 	font-family: 'Quicksand', sans-serif;
+	overflow-y: hidden;
 }
 
 body {
@@ -13,12 +15,8 @@ body {
 	overflow-x: hidden;
 }
 
-#___gatsby {
-	height: 100%;
-}
-
-#gatsby-focus-wrapper {
-	height: 100%;
+#___gatsby, #gatsby-focus-wrapper {
+	height: 100%
 }
 
 .noselect {

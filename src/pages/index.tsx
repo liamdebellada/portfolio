@@ -14,6 +14,11 @@ import ScreenDeck from '../components/screenDeck/screenDeck';
 import Slide from '../components/slide/slide';
 
 const app = () => {
+
+  if (typeof window === "undefined") {
+    return <p>Server Render</p>
+  }
+
   return (
     <div className="homeParent">
       <title>Home</title>

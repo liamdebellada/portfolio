@@ -10,12 +10,14 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	min-height: 300px;
 }
 
 .aboutParent {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	min-height: 300px;
 }
 
 .descriptionText {
@@ -60,4 +62,16 @@
 
 .techStackItem:not(:last-child) {
 	margin-right: 1.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+	.contactParent {
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-bottom: 2rem;
+	}
+
+	.techStackList {
+		justify-content: center;
+	}
 }
