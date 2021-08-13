@@ -48,7 +48,7 @@ const Contact = () => {
 			</div>
 			<div className="aboutParent">
 				<Heading options={{text: "About"}}/>
-				<p className="descriptionText">You can checkout what I’m working on or get in contact with me through the above channels: The source-code for my portfolio is available here: {<span style={{fontWeight: 800, cursor: "pointer", textDecoration: "underline"}} onClick={() => navigate("https://github.com/liamdebellada/portfolio")}>Click Me</span>}, written in TypeScript using Gatsby, with React used for animations and rendering!</p>
+				<p className="descriptionText">The source-code for my portfolio is available here: {<span style={{fontWeight: 800, cursor: "pointer", textDecoration: "underline"}} onClick={() => navigate("https://github.com/liamdebellada/portfolio")}>Click Me</span>}, written in TypeScript using Gatsby, with React used for animations and rendering!</p>
 				<div className="techStackList">
 					{techStack.map((item) => (
 						<img className="techStackItem" src={item.icon}/>
