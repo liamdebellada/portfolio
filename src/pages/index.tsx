@@ -92,6 +92,7 @@ query {
         display_title
         repo_url
 		display_image
+    display_slide
       }
     }
   }

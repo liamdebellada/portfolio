@@ -5,7 +5,9 @@
 	background: linear-gradient(180deg, #E8E8E8 0%, #E8E8E8 60.94%, #FFFFFF 100%);
 	display: flex;
 	align-items: flex-end;
-	background-image: url(/screens/needles.png)
+	background-image: url(/screens/needles.png);
+	background-size: 100%;
+	filter: drop-shadow(0px 43px 118px rgba(0, 0, 0, 0.08));
 }
 
 .titleText {

@@ -77,7 +77,6 @@ export default function huh({data} : {data: any}) {
 						<div className="contentInfo">
 							<div className="contentInfoText">
 								<p className="descriptionText projectDescription">{item.file_data.content.short_description}</p>
-								<p className="descriptionText projectDescription">Working with staff at the Royal School of Needlework, I was able to accurately meet client requirements communicating remotely through emails and video calls.</p>
 							</div>
 							<div className="contentInfoImages">
 								<div className="images">

@@ -80,7 +80,8 @@ exports.createSchemaCustomization = ({ actions }) => {
 		  short_description: String!,
 		  raw_md: String!,
 		  repo_url: String,
-		  display_image: String
+		  display_image: String,
+		  display_slide: String
 	  }
 
 	  type FileData implements Node {
