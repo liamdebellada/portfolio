@@ -55,7 +55,10 @@ const PathItem = () => {
 	)
 }
 
-export default function huh({data} : {data: any}) {
+export default function huh({data, location} : {data: any, location: any}) {
+
+	console.log(location)
+
 
 	return (
 		<div className="projectsParent">
@@ -67,8 +70,19 @@ export default function huh({data} : {data: any}) {
 				</p>
 			</div>
 			<motion.div initial="hidden" animate="show" variants={container}>
-			{data.Projects.map((item: any, i: number) => (
-				<div key={i} className="contentArea">
+			{data.Projects.map((item: any, i: number) => {
+
+				const ItemRef = React.useRef<HTMLDivElement | null>(null);
+				React.useEffect(() => {
+					
+				if (location.state.clicked == item.file_data.content.display_title) {
+					ItemRef.current?.scrollIntoView();
+				}
+					
+				}, [])
+
+			return (
+				<div ref={ItemRef} key={i} className="contentArea">
 					<div className="progressArea">
 						<PathItem/>
 					</div>
@@ -89,7 +103,7 @@ export default function huh({data} : {data: any}) {
 						</div>
 					</motion.div>
 				</div>
-			))}
+			)})}
 			</motion.div>
 		</div>
 	)

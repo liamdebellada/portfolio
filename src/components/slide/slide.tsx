@@ -7,7 +7,7 @@ import { navigate } from 'gatsby';
 
 const Slide = ({item} : any) => {
 	return (
-		<motion.div onClick={() => navigate("/projects")} style={{backgroundImage: `url(${item.file_data.content.display_slide})`}} className="slideParent" initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.5, delay: 0.2}}>
+		<motion.div onClick={() => navigate("/projects", {"state" : {"clicked" : item.file_data.content.display_title}})} style={{backgroundImage: `url(${item.file_data.content.display_slide})`}} className="slideParent" initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.5, delay: 0.2}}>
 			<span className="titleText">{item.file_data.content.display_title}</span>
 		</motion.div>
 	)
