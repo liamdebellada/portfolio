@@ -1,5 +1,5 @@
 {
-	"include": ["./src/**/*", "./node_modules/@splidejs/splide/src/js/splide.d.ts"],
+	"include": ["./src/**/*", "gatsby-node.ts"],
 	"compilerOptions": {
 	  "target": "esnext",
 	  "module": "esnext",

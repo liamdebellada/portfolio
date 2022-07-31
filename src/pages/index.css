@@ -89,6 +89,10 @@
 }
 
 @media only screen and (max-width: 990px) {
+	.homeParent {
+		padding-right: 0;
+	}
+
 	.bioContent {
 		flex-direction: column;
 	}

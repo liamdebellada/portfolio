@@ -1,119 +1,146 @@
-import React from 'react';
-import './projects.css';
+import React, {useEffect} from 'react'
 
-//components
-import Heading from '../../components/heading/heading';
-import RepoButton from '../../components/buttons/repoButton/repoButton';
+import { motion } from 'framer-motion'
+import { graphql } from 'gatsby'
 
-//lib
-import {motion} from 'framer-motion';
-import { graphql } from 'gatsby';
+import Heading from '../../components/heading/heading'
+import RepoButton from '../../components/buttons/RepoButton'
 
-const container = {
-	hidden: { opacity: 0 },
-	show: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.35,
-		}
-	}
-}
-  
-const item_var = {
-	hidden: { pathLength: 0 },
-	show: { 
-		pathLength: 1, 
-		transition: {
-			duration: 1
-		}
-	}
-}
+import { useIsMounted } from "usehooks-ts"
 
-const node_var = {
-	hidden: {	scale: 0 },
-	show: {
-		scale: 1, 
-		transition : {
-			duration: 0.2, type: "spring", damping: 9
-		}
-	}
-}
+import type { FunctionComponent } from "react"
+import type { PageProps } from "gatsby"
+import type { RepoItem } from "../../../github-types"
 
-const PathItem = () => {
-	return (
-		<>
-			<motion.div variants={node_var} className="circle"/>
-			<svg preserveAspectRatio="none" width="7" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 2 5 60">
-				<motion.path 
-				d="M 2,2 v 300" 
-				height="100%"
-				stroke="#939393"
-				variants={item_var}
-				/>
-			</svg>
-		</>
-	)
+import './projects.css'
+
+const AnimationVariants = {
+  projects: {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.35,
+      }
+    }
+  },
+  svgLine: {
+    hidden: { pathLength: 0 },
+    show: {
+      pathLength: 1,
+      transition: {
+        duration: 1
+      }
+    }
+  },
+  circle: {
+    hidden: {	scale: 0 },
+    show: {
+      scale: 1,
+      transition : {
+        duration: 0.2, type: "spring", damping: 9
+      }
+    }
+  }
 }
 
-export default function huh({data, location} : {data: any, location: any}) {
+type ProjectsProps = PageProps<
+    {
+      Projects: Array<{
+        file_data: {
+          content: RepoItem
+        }
+      }>
+    },
+    object,
+    { clicked: string }
+    >
 
-	console.log(location)
-
-
-	return (
-		<div className="projectsParent">
-			<title>Projects</title>
-			<div className="projectsHeading">
-				<Heading options={{text: "Projects"}}/>
-				<p className="descriptionText">
-				All of my personal projects are open-source and available to fork, download and contribute to on GitHub. 
-				</p>
-			</div>
-			<motion.div initial="hidden" animate="show" variants={container}>
-			{data.Projects.map((item: any, i: number) => {
-
-				const ItemRef = React.useRef<HTMLDivElement | null>(null);
-				React.useEffect(() => {
-					
-				if (location.state.clicked == item.file_data.content.display_title) {
-					ItemRef.current?.scrollIntoView();
-				}
-					
-				}, [])
-
-			return (
-				<div ref={ItemRef} key={i} className="contentArea">
-					<div className="progressArea">
-						<PathItem/>
-					</div>
-					<motion.div className="textArea">
-						<Heading options={{text: item.file_data.content.display_title, size: "2rem"}}/>
-						<div className="contentInfo">
-							<div className="contentInfoText">
-								<p className="descriptionText projectDescription">{item.file_data.content.short_description}</p>
-							</div>
-							<div className="contentInfoImages">
-								<div className="images">
-									<img src={item.file_data.content.display_image}/>
-								</div>
-								<div className="buttons">
-									<RepoButton link={item.file_data.content.repo_url as string}/>
-								</div>
-							</div>
-						</div>
-					</motion.div>
-				</div>
-			)})}
-			</motion.div>
-		</div>
-	)
+type ProjectProps = RepoItem & {
+  isLastProject: boolean
 }
+
+const NodeTree = ({ isLastNode }: { isLastNode: boolean }) => {
+  return (
+    <>
+      <motion.div variants={AnimationVariants.circle} className="circle"/>
+      {!isLastNode && (
+        <svg preserveAspectRatio="none" width="7" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 2 5 60">
+          <motion.path
+            d="M 2,2 v 300"
+            height="100%"
+            stroke="#939393"
+            variants={AnimationVariants.svgLine}
+          />
+        </svg>
+      )}
+    </>
+  )
+}
+
+const Project: FunctionComponent<ProjectProps> = ({ display_image, display_title, short_description, repo_url, isLastProject }) => (
+  <div id={display_title} className="contentArea">
+    <div className="progressArea">
+      <NodeTree isLastNode={isLastProject} />
+    </div>
+    <motion.div className="textArea">
+      <Heading text={display_title} options={{size: "2rem"}} />
+      <div className="contentInfo">
+        <div className="contentInfoText">
+          <p className="descriptionText projectDescription">{short_description}</p>
+        </div>
+        <div className="contentInfoImages">
+          <div className="images">
+            <img src={display_image} />
+          </div>
+          <div className="buttons">
+            <RepoButton link={repo_url} />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+)
+
+const Projects: FunctionComponent<ProjectsProps> = ({data, location}) => {
+  const { Projects } = data
+
+  const isMounted = useIsMounted()
+
+  useEffect(() => {
+    if (isMounted() && location.state.clicked) {
+      const clickedProject = document.getElementById(location.state.clicked)
+      if (clickedProject) clickedProject.scrollIntoView()
+    }
+  }, [isMounted])
+
+  return (
+    <div className="projectsParent">
+      <title>Projects</title>
+      <div className="projectsHeading">
+        <Heading text="Projects" />
+        <p className="descriptionText">
+          All of my personal projects are open-source and available to fork, download and contribute to on GitHub.
+        </p>
+      </div>
+      <motion.div initial="hidden" animate="show" variants={AnimationVariants.projects}>
+        {Projects.map(({ file_data: { content: item }}, i) => (
+          <Project
+            key={i}
+            isLastProject={i === Projects.length - 1}
+            {...item}
+          />
+        ))}
+      </motion.div>
+    </div>
+  )
+}
+
+export default Projects
 
 export const query = graphql`
 query {
   Projects {
-    name
-    html_url
     file_data {
       content {
         short_description

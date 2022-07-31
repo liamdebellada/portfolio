@@ -1,24 +1,31 @@
 .slideParent {
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	height: 10rem;
 	width: 13rem;
 	border-radius: 30px;
-	background: linear-gradient(180deg, #E8E8E8 0%, #E8E8E8 60.94%, #FFFFFF 100%);
-	display: flex;
-	align-items: flex-end;
-	background-image: url(/screens/needles.png);
-	background-size: 100%;
-	filter: drop-shadow(0px 43px 118px rgba(0, 0, 0, 0.08));
+	background: white;
+}
+
+.slideImage {
+	height: 100%;
+	width: 100%;
 }
 
 .titleText {
 	font-size: 1.4rem;
 	font-weight: 700;
-	margin: 1rem;
-	margin-bottom: 2rem;
 }
 
 .image {
 	object-fit: cover;
 	height: 100%;
 	width: 100%;
+}
+
+.splide.is-active .splide__list {
+	gap: 0.5em;
 }

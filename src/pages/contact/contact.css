@@ -6,6 +6,10 @@
 	grid-template-rows: 50%;
 }
 
+.contactParent a {
+	all: unset;
+}
+
 .contactListParent {
 	display: flex;
 	flex-direction: column;
@@ -25,6 +29,12 @@
 	font-size: 1.2rem;
 	max-width: 500px;
 	margin-top: 0;
+}
+
+.descriptionText .sourceCodeLink {
+	font-weight: 800;
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 .socialListParent {

@@ -1,90 +1,78 @@
-import React from 'react';
-import './nav.css';
+import React, { useCallback, useState, useMemo } from 'react'
 
-import {navigate} from 'gatsby';
-import {animate, motion, useAnimation} from 'framer-motion';
+import { navigate } from 'gatsby'
+import { motion, useAnimation } from 'framer-motion'
 
-interface Options {
-	icon: string,
-	name: string,
-	route: string
+import type { FunctionComponent } from 'react'
+
+import './nav.css'
+
+type BarProps = {
+  routes: Array<{
+    icon: string,
+    name: string,
+    route: string
+  }>,
+  path: string,
+  desktopScreen: boolean
 }
 
-interface BarState {
-	current: boolean,
-	animFinish: boolean
-}
+const Bar: FunctionComponent<BarProps> = ({routes, path, desktopScreen}) => {
+  const [expanded, setExpanded] = useState({current: false, animFinish: true})
 
-const ItemList = ({options, path} : {options: Options[], path: string}) => {
-	return (
-		<>
-			{options.map((option, i) => (
-				<motion.div initial={{opacity: 0}} animate={{opacity: 1}} key={i} className="navItem noselect">
-					<span 
-						onClick={() => navigate(option.route)} 
-						className={option.route == path ? "navItemActive material-icons" : "material-icons"}
-						>
-							{option.icon}
-					</span>
-				</motion.div>
-			))}
-		</>
-	)
-}
+  const animation = useAnimation()
 
-const Bar = ({options, path}: {options: Options[], path: string}) => {
+  const handleExpand = useCallback(() => {
+    if (!expanded.current) {
+      animation.start({
+        height: "12rem",
+        position: "absolute",
+        transition: {duration: 0.2}
+      })
+    } else {
+      animation.start({
+        height: "3rem",
+        position: "absolute",
+        transition: {duration: 0.2}
+      })
+    }
 
-	const [size, setSize] = React.useState<number[] | null[]>([null, null]);
-	const [expanded, setExpanded] = React.useState<BarState>({current: false, animFinish: true});
+    setExpanded({
+      current: !expanded.current,
+      animFinish: false
+    })
+  }, [expanded, animation])
 
-	const animation = useAnimation();
+  const navigationItems = useMemo(() => routes.map(({ route, icon }, i) => (
+    <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      key={i}
+      className="navItem noselect"
+    >
+      <span
+        onClick={() => navigate(route)}
+        className={route == path ? "navItemActive material-icons" : "material-icons"}
+      >
+        {icon}
+      </span>
+    </motion.div>
+  )), [path, routes])
 
-	const handleExpand = (state: BarState) => {
-		if (state.current == false) {
-			animation.start({
-				height: "12rem",
-				position: "absolute",
-				transition: {duration: 0.2}
-			})
-		} else {
-			animation.start({
-				height: "3rem",
-				position: "absolute",
-				transition: {duration: 0.2}
-			})
-		}
+  if (!desktopScreen) return (
+    <motion.div
+      onAnimationComplete={() => setExpanded({current: expanded.current, animFinish: true})}
+      animate={animation}
+      className={`barParent smallSize ${expanded && 'expandedNav'}`}
+      onClick={handleExpand}
+    >
+      {expanded.current && expanded.animFinish ? navigationItems : <span className="material-icons noselect">menu</span>}
+    </motion.div>
+  )
 
-		setExpanded({
-			current: state.current ? false : true,
-			animFinish: false
-		})
-	}
-	
-
-	React.useEffect(() => {
-		
-		setSize([window.innerWidth, window.innerHeight])
-
-		window.addEventListener('resize', (e) => {
-			setSize([window.innerWidth, window.innerHeight])
-		})
-	}, [])
-
-	React.useEffect(() => {
-		console.log(expanded)
-	}, [expanded]);
-
-	return (
-		<motion.div onAnimationComplete={() => setExpanded({current: expanded.current, animFinish: true})} animate={animation} className={size[0] != null && size[0] > 600 ? "barParent fullSize" : "barParent smallSize" + (expanded ? " expandedNav" : "")} onClick={() => size[0] != null && size[0] > 600 ? undefined : handleExpand(expanded) }>
-			{size[0] != null && size [0] > 600 ? (
-				<ItemList options={options} path={path}/>
-			): expanded.current && expanded.animFinish ? (
-					<ItemList options={options} path={path}/>
-			) : (
-				<span className="material-icons noselect">menu</span>
-			)}
-		</motion.div>
-	)
+  return (
+    <motion.div className="barParent fullSize">{navigationItems}</motion.div>
+  )
 }
 
 export default Bar

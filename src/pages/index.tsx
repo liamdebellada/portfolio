@@ -1,25 +1,42 @@
-import * as React from "react"
-import './index.css';
+import React from "react"
 
-//lib
-import {motion} from 'framer-motion';
-import {graphql} from 'gatsby';
+import { motion } from 'framer-motion'
+import { graphql } from 'gatsby'
 
-//@ts-ignore
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-//components
-import Heading from '../components/heading/heading';
-import ScreenDeck from '../components/screenDeck/screenDeck';
-import Slide from '../components/slide/slide';
+import Heading from '../components/heading/heading'
+import ScreenDeck from '../components/screenDeck/screenDeck'
+import Slide from '../components/slide/slide'
 
-const app = ({data} : {data: any}) => {
+import type { FunctionComponent } from 'react'
+import type { PageProps } from 'gatsby'
+import type { RepoItem } from "../../github-types"
+
+import './index.css'
+import '@splidejs/splide/dist/css/themes/splide-default.min.css'
+
+type HomeProps = PageProps<{
+    Projects: Array<{
+        file_data: {
+            content: RepoItem
+        }
+    }>
+}>
+
+const ScreenDeckImages = [
+  "/screens/colony.png",
+  "/screens/mink.png",
+  "/screens/needles.png"
+]
+
+const Home: FunctionComponent<HomeProps> = ({ data }) => {
   return (
     <div className="homeParent">
       <title>Home</title>
+
       <div className="homeTop">
-        <Heading options={{text: "Bio"}}/>
+        <Heading text="Bio" />
         <div className="bioContent">
           <div className="descriptionSection">
             <p className="bioDescription">
@@ -29,49 +46,46 @@ const app = ({data} : {data: any}) => {
             I’m 18 Years old, and currently live in the United Kingdom. I enjoy running and the small things in life.
             </p>
           </div>
+
           <div className="imageSection">
             <div className="faces">
               <div className="face">
-                <img className="primaryFace" src="/face1.jpeg"/>
+                <img className="primaryFace" src="/face1.jpeg" alt="primary-face"/>
               </div>
-              <motion.div initial={{x: "-14rem"}} transition={{delay: 0.1}} animate={{x: -50}} className="face">
-                <img className="primaryFace secondaryFace" src="/face2.png"/>
+              <motion.div className="face" initial={{x: "-14rem"}} transition={{delay: 0.1}} animate={{x: -50}}>
+                <img className="primaryFace secondaryFace" src="/face2.png" alt="secondary-face"/>
               </motion.div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="homeBottom">
         <div className="workingImage">
-          <ScreenDeck options={
-            [
-              {image: "/screens/colony.png"},
-              {image: "/screens/mink.png"},
-              {image: "/screens/needles.png"}
-            ]
-          }/>
+          <ScreenDeck deckItems={ScreenDeckImages}/>
           <div className="splideList">
             <Splide
-                options={{
-                  arrows: false,
-                  pagination: false,
-                  autoWidth: true,
-                  autoHeight: true,
-                  height: "9rem",
-                  gap: "20px",
-                  fixedWidth: "5rem"
-                }}
-              >
-                {data.Projects.map((item: any, i: number) => (
+              options={{
+                arrows: false,
+                pagination: false,
+                autoWidth: true,
+                autoHeight: true,
+                height: "9rem",
+                gap: "20px",
+                fixedWidth: "5rem"
+              }}
+            >
+              {data.Projects.map((project, i) => (
                 <SplideSlide key={i}>
-                  <Slide item={item}/>
+                  <Slide item={project}/>
                 </SplideSlide>
-                ))}
-              </Splide>
+              ))}
+            </Splide>
           </div>
         </div>
+
         <div className="workingText">
-          <Heading options={{text: "What I've been working on?"}}/>
+          <Heading text="What I've been working on?" />
           <p className="bioDescription">My latest projects have all been open-source from conception to completion, with focus on the user experience and functionality.</p>
         </div>
       </div>
@@ -87,16 +101,12 @@ query {
     html_url
     file_data {
       content {
-        short_description
-        raw_md
         display_title
-        repo_url
-		display_image
-    display_slide
+        display_slide
       }
     }
   }
 }
 `
 
-export default app;
+export default Home

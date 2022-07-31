@@ -1,17 +1,20 @@
-import React from 'react';
-import './heading.css';
+import React from 'react'
 
-interface HeadingOptions {
+import type { FunctionComponent } from 'react'
+
+import './heading.css'
+
+type HeadingProps = {
 	text: string,
-	size?: string
+	options?: {
+		size: string
+	}
 }
 
-const Heading = ({options} : {options: HeadingOptions}) => {
-	return (
-		<div style={{fontSize: options.size || "3rem", height: options.size}} className="heading">
-			{options.text}
-		</div>
-	)
-}
+const Heading: FunctionComponent<HeadingProps> = ({ text, options }) => (
+  <div style={options && {fontSize: options.size || "3rem", height: options.size}} className="heading">
+    {text}
+  </div>
+)
 
-export default Heading;
+export default Heading
