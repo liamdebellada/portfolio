@@ -2,8 +2,8 @@ import React, { useState } from "react"
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion"
 import { useWindowSize, useTimeout } from "usehooks-ts"
 
-import Bar from '../components/nav/nav'
-import Splash from '../components/splash/splash'
+import Bar from '~/components/nav/nav'
+import Splash from '~/components/splash/splash'
 
 import type { FunctionComponent, ReactNode } from "react"
 

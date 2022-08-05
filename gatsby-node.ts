@@ -1,38 +1,38 @@
 import 'dotenv/config'
 
-import fetch from 'node-fetch'
+import path from "path"
+import { Octokit } from "octokit"
 
 import type { GatsbyNode } from 'gatsby'
-import type { RequestInit } from 'node-fetch'
-import type { GithubContent, RepoItem } from "./github-types"
+import type { ProjectItem } from "github-types"
+import type { GetResponseTypeFromEndpointMethod } from "@octokit/types"
 
-const GIT_PROJECTS = "https://api.github.com/repos/liamdebellada/portfolio-data/contents/Projects?ref=master"
-const GitRequestConfig = {
-  headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` }
-}
+const { rest: GithubRestApi } = new Octokit({
+  auth: process.env.GITHUB_TOKEN
+})
 
-const githubFetch = (url: string, opts?: RequestInit) => fetch(url, {...GitRequestConfig, ...opts})
+type ContentResponse = Extract<
+  GetResponseTypeFromEndpointMethod<typeof GithubRestApi.repos.getContent>["data"],
+  Record<string, unknown>
+>
 
-const fetchGithubContent = async (githubContent: GithubContent) => {
-  try {
-    const response = await githubFetch(githubContent.git_url)
-    const fileData = await response.json()
+const fetchAndDecodeGithubContent = async (githubContent: Omit<ContentResponse, 'encoding'>) => {
+  const { path } = githubContent
+
+  const { data: fileContent } = await GithubRestApi.repos.getContent({
+    owner: 'liamdebellada',
+    repo: 'portfolio-data',
+    path
+  })
+
+  if ("content" in fileContent) {
+    const { content } = fileContent
 
     const json_content = Buffer
-      .from(fileData.content, "base64")
+      .from(content, "base64")
       .toString()
-    const repoItem: RepoItem = JSON.parse(json_content)
 
-    return {
-      ...githubContent,
-      file_data: {
-        ...fileData,
-        content: repoItem
-      }
-    }
-  } catch (err) {
-    console.error(err)
-    throw err
+    return JSON.parse(json_content) as ProjectItem
   }
 }
 
@@ -40,13 +40,18 @@ export const createResolvers: GatsbyNode["createResolvers"] = async ({ createRes
   createResolvers({
     Query: {
       Projects: {
-        type: "[GithubItem!]!",
+        type: "[Project!]!",
         async resolve() {
           try {
-            const response = await githubFetch(GIT_PROJECTS)
-            const githubContents: Array<GithubContent> = await response.json()
+            const { data: projects } = await GithubRestApi.repos.getContent({
+              owner: 'liamdebellada',
+              repo: 'portfolio-data',
+              path: 'Projects'
+            })
 
-            return await Promise.all(githubContents.map(fetchGithubContent))
+            if (!Array.isArray(projects)) throw new Error('Repository path must be a directory')
+
+            return await Promise.all(projects.map(fetchAndDecodeGithubContent))
           } catch (err) {
             console.error(err)
             throw err
@@ -59,35 +64,13 @@ export const createResolvers: GatsbyNode["createResolvers"] = async ({ createRes
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({ actions }) => {
   actions.createTypes(`
-    type GithubJson implements Node {
+    type Project implements Node {
       display_title: String!,
       short_description: String!,
       raw_md: String!,
       repo_url: String,
       display_image: String,
       display_slide: String
-    }
-
-    type FileData implements Node {
-      sha: String!,
-      node_id: String!,
-      size: Int!,
-      url: String!,
-      content: GithubJson!,
-      encoding: String!
-    }
-
-    type GithubItem implements Node {
-      name: String!,
-      path: String!,
-      sha: String!,
-      size: Int!,
-      url: String!,
-      html_url: String!,
-      git_url: String!,
-      download_url: String!,
-      type: String!,
-      file_data: FileData!
     }
   `)
 }
@@ -97,6 +80,14 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
   loaders,
   actions
 }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        "~": path.resolve(__dirname, 'src/')
+      }
+    },
+  })
+
   if (stage === "build-html") {
     actions.setWebpackConfig({
       module: {

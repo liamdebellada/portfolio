@@ -5,23 +5,19 @@ import { graphql } from 'gatsby'
 
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-import Heading from '../components/heading/heading'
-import ScreenDeck from '../components/screenDeck/screenDeck'
-import Slide from '../components/slide/slide'
+import Heading from '~/components/heading/heading'
+import ScreenDeck from '~/components/screenDeck/screenDeck'
+import Slide from '~/components/slide/slide'
 
 import type { FunctionComponent } from 'react'
 import type { PageProps } from 'gatsby'
-import type { RepoItem } from "../../github-types"
+import type { ProjectItem } from "github-types"
 
 import './index.css'
 import '@splidejs/splide/dist/css/themes/splide-default.min.css'
 
 type HomeProps = PageProps<{
-    Projects: Array<{
-        file_data: {
-            content: RepoItem
-        }
-    }>
+    Projects: Array<ProjectItem>
 }>
 
 const ScreenDeckImages = [
@@ -31,6 +27,7 @@ const ScreenDeckImages = [
 ]
 
 const Home: FunctionComponent<HomeProps> = ({ data }) => {
+  const { Projects } = data
   return (
     <div className="homeParent">
       <title>Home</title>
@@ -75,7 +72,7 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
                 fixedWidth: "5rem"
               }}
             >
-              {data.Projects.map((project, i) => (
+              {Projects.map((project, i) => (
                 <SplideSlide key={i}>
                   <Slide item={project}/>
                 </SplideSlide>
@@ -97,14 +94,8 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
 export const query = graphql`
 query {
   Projects {
-    name
-    html_url
-    file_data {
-      content {
-        display_title
-        display_slide
-      }
-    }
+    display_title
+    display_slide
   }
 }
 `

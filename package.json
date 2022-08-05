@@ -27,6 +27,7 @@
     "gatsby-react-router-scroll": "5.19.0",
     "gatsby-script": "1.4.0",
     "gatsby-source-custom-api": "2.3.6",
+    "octokit": "2.0.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "string-replace-all": "1.0.3",

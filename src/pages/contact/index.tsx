@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-import Heading from '../../components/heading/heading'
+import Heading from '~/components/heading/heading'
 
 import type { FunctionComponent } from "react"
 

@@ -3,14 +3,14 @@ import React, {useEffect} from 'react'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 
-import Heading from '../../components/heading/heading'
-import RepoButton from '../../components/buttons/RepoButton'
+import Heading from '~/components/heading/heading'
+import RepoButton from '~/components/buttons/RepoButton'
 
 import { useIsMounted } from "usehooks-ts"
 
 import type { FunctionComponent } from "react"
 import type { PageProps } from "gatsby"
-import type { RepoItem } from "../../../github-types"
+import type { ProjectItem } from "github-types"
 
 import './projects.css'
 
@@ -46,17 +46,13 @@ const AnimationVariants = {
 
 type ProjectsProps = PageProps<
     {
-      Projects: Array<{
-        file_data: {
-          content: RepoItem
-        }
-      }>
+      Projects: Array<ProjectItem>
     },
     object,
     { clicked: string }
     >
 
-type ProjectProps = RepoItem & {
+type ProjectProps = ProjectItem & {
   isLastProject: boolean
 }
 
@@ -124,7 +120,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({data, location}) => {
         </p>
       </div>
       <motion.div initial="hidden" animate="show" variants={AnimationVariants.projects}>
-        {Projects.map(({ file_data: { content: item }}, i) => (
+        {Projects.map((item, i) => (
           <Project
             key={i}
             isLastProject={i === Projects.length - 1}
@@ -141,15 +137,11 @@ export default Projects
 export const query = graphql`
 query {
   Projects {
-    file_data {
-      content {
-        short_description
-        raw_md
-        display_title
-        repo_url
-		display_image
-      }
-    }
+    short_description
+    raw_md
+    display_title
+    repo_url
+    display_image
   }
 }
 `
