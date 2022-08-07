@@ -6,6 +6,7 @@ import Heading from '~/components/heading/heading'
 import type { FunctionComponent } from "react"
 
 import './contact.css'
+import buildMetaTags from "~/seo/buildMetaTags"
 
 const PROJECT_URL = 'https://github.com/liamdebellada/portfolio'
 
@@ -74,5 +75,9 @@ const Contact: FunctionComponent = () => {
     </div>
   )
 }
+
+export const Head = buildMetaTags({
+  description: 'How to contact Liam Debell'
+})
 
 export default Contact

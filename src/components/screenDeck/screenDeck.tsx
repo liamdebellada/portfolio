@@ -26,13 +26,13 @@ const ScreenDeck: FunctionComponent<ScreenDeckProps> = ({ deckItems }) => (
             className="deckItem deckRotate"
             style={{transform: `rotate(${cssRotate})`}}
           >
-            <img className="screenItem" src={imageUrl}/>
+            <img className="screenItem" src={imageUrl} alt="screen-item" />
           </motion.div>
         )
       } else {
         return (
           <div key={i} className="deckItem deckCenter">
-            <img className="screenItem" src={imageUrl}/>
+            <img className="screenItem" src={imageUrl} alt="screen-item" />
           </div>
         )
       }

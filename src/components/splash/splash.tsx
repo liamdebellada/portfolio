@@ -14,7 +14,7 @@ const SplashScreen = () => {
         className="splashParent"
         layoutId="header"
       >
-        <motion.img layoutId="logo" src="/liam.svg"/>
+        <motion.img layoutId="logo" src="/liam.svg" alt="site-logo" />
       </motion.div>
     </AnimatePresence>
   )

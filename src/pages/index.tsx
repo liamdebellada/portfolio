@@ -15,6 +15,7 @@ import type { ProjectItem } from "github-types"
 
 import './index.css'
 import '@splidejs/splide/dist/css/themes/splide-default.min.css'
+import buildMetaTags from "~/seo/buildMetaTags"
 
 type HomeProps = PageProps<{
     Projects: Array<ProjectItem>
@@ -22,7 +23,7 @@ type HomeProps = PageProps<{
 
 const ScreenDeckImages = [
   "/screens/colony.png",
-  "/screens/mink.png",
+  "/screens/portfolio.png",
   "/screens/needles.png"
 ]
 
@@ -47,7 +48,7 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
           <div className="imageSection">
             <div className="faces">
               <div className="face">
-                <img className="primaryFace" src="/face1.jpeg" alt="primary-face"/>
+                <img className="primaryFace" src="/face1.png" alt="primary-face"/>
               </div>
               <motion.div className="face" initial={{x: "-14rem"}} transition={{delay: 0.1}} animate={{x: -50}}>
                 <img className="primaryFace secondaryFace" src="/face2.png" alt="secondary-face"/>
@@ -99,5 +100,9 @@ query {
   }
 }
 `
+
+export const Head = buildMetaTags({
+  description: 'I’m Liam. I have a passion for the art of software development, and love writing both back-end and front-end code, with an emphasis on speed.'
+})
 
 export default Home

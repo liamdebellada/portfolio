@@ -13,6 +13,7 @@ import type { PageProps } from "gatsby"
 import type { ProjectItem } from "github-types"
 
 import './projects.css'
+import buildMetaTags from "~/seo/buildMetaTags"
 
 const AnimationVariants = {
   projects: {
@@ -87,7 +88,7 @@ const Project: FunctionComponent<ProjectProps> = ({ display_image, display_title
         </div>
         <div className="contentInfoImages">
           <div className="images">
-            <img src={display_image} />
+            <img src={display_image} alt="project-screenshot" />
           </div>
           <div className="buttons">
             <RepoButton link={repo_url} />
@@ -132,8 +133,6 @@ const Projects: FunctionComponent<ProjectsProps> = ({data, location}) => {
   )
 }
 
-export default Projects
-
 export const query = graphql`
 query {
   Projects {
@@ -145,3 +144,9 @@ query {
   }
 }
 `
+
+export const Head = buildMetaTags({
+  description: "A summary of some of Liam Debell's personal projects."
+})
+
+export default Projects

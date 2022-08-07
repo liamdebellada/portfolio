@@ -86,18 +86,15 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
         "~": path.resolve(__dirname, 'src/')
       }
     },
-  })
-
-  if (stage === "build-html") {
-    actions.setWebpackConfig({
+    ...(stage === "build-html" && {
       module: {
         rules: [
           {
             test: /@splidejs/,
             use: loaders.null(),
-          },
-        ],
-      },
+          }
+        ]
+      }
     })
-  }
+  })
 }

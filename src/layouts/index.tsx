@@ -86,7 +86,7 @@ const Layout: FunctionComponent<LayoutProps> = ({children, path}) => {
                     <Bar routes={Routes} path={path} desktopScreen={desktopScreen}/>
                   )}
                 </motion.div>
-                <motion.img layoutId={!splashFinished ? 'logo' : undefined} src="/liam.svg"/>
+                <motion.img layoutId={!splashFinished ? 'logo' : undefined} src="/liam.svg" alt="site-logo" />
               </motion.div>
 
               <div className="contentParent">
