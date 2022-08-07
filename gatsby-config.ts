@@ -15,6 +15,12 @@ const config: GatsbyConfig = {
           rootKey: "GithubParent",
           url: "https://api.github.com/repos/liamdebellada/portfolio-data/contents"
       }
+    },
+    {
+      resolve: "gatsby-plugin-html-attributes",
+      options: {
+        lang: 'en'
+      }
     }
   ]
 }

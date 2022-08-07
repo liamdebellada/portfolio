@@ -22,6 +22,7 @@
     "framer-motion": "4.1.17",
     "gatsby": "4.19.2",
     "gatsby-link": "4.19.1",
+    "gatsby-plugin-html-attributes": "^1.0.5",
     "gatsby-plugin-layout": "3.19.0",
     "gatsby-plugin-typescript": "4.19.0",
     "gatsby-react-router-scroll": "5.19.0",

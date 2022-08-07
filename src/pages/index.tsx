@@ -22,9 +22,9 @@ type HomeProps = PageProps<{
 }>
 
 const ScreenDeckImages = [
-  "/screens/colony.png",
-  "/screens/portfolio.png",
-  "/screens/needles.png"
+  "/screens/colony.webp",
+  "/screens/portfolio.webp",
+  "/screens/needles.webp"
 ]
 
 const Home: FunctionComponent<HomeProps> = ({ data }) => {
@@ -48,10 +48,10 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
           <div className="imageSection">
             <div className="faces">
               <div className="face">
-                <img className="primaryFace" src="/face1.png" alt="primary-face"/>
+                <img className="primaryFace" src="/face1.webp" alt="primary-face"/>
               </div>
               <motion.div className="face" initial={{x: "-14rem"}} transition={{delay: 0.1}} animate={{x: -50}}>
-                <img className="primaryFace secondaryFace" src="/face2.png" alt="secondary-face"/>
+                <img className="primaryFace secondaryFace" src="/face2.webp" alt="secondary-face"/>
               </motion.div>
             </div>
           </div>
