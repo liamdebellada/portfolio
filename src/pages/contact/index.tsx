@@ -1,12 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
+import buildMetaTags from "~/seo/buildMetaTags"
+
 import Heading from '~/components/heading/heading'
 
 import type { FunctionComponent } from "react"
 
 import './contact.css'
-import buildMetaTags from "~/seo/buildMetaTags"
 
 const PROJECT_URL = 'https://github.com/liamdebellada/portfolio'
 

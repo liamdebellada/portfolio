@@ -1,15 +1,16 @@
-import React, { useCallback, useState, useMemo } from 'react'
+import type {FunctionComponent} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 
-import { navigate } from 'gatsby'
-import { motion, useAnimation } from 'framer-motion'
+import {navigate} from 'gatsby'
+import {motion, useAnimation} from 'framer-motion'
 
-import type { FunctionComponent } from 'react'
+import Icon, {IconNames} from '~/components/Icon'
 
 import './nav.css'
 
 type BarProps = {
   routes: Array<{
-    icon: string,
+    icon: IconNames,
     name: string,
     route: string
   }>,
@@ -49,13 +50,12 @@ const Bar: FunctionComponent<BarProps> = ({routes, path, desktopScreen}) => {
       animate={{opacity: 1}}
       key={i}
       className="navItem noselect"
+      onClick={() => navigate(route)}
     >
-      <span
-        onClick={() => navigate(route)}
-        className={route == path ? "navItemActive material-icons" : "material-icons"}
-      >
-        {icon}
-      </span>
+      <Icon
+        name={icon}
+        className={route === path ? "navItemActive": ''}
+      />
     </motion.div>
   )), [path, routes])
 
@@ -66,7 +66,7 @@ const Bar: FunctionComponent<BarProps> = ({routes, path, desktopScreen}) => {
       className={`barParent smallSize ${expanded && 'expandedNav'}`}
       onClick={handleExpand}
     >
-      {expanded.current && expanded.animFinish ? navigationItems : <span className="material-icons noselect">menu</span>}
+      {expanded.current && expanded.animFinish ? navigationItems : <Icon name={IconNames.menu} />}
     </motion.div>
   )
 

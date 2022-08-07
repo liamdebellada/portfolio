@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 html {
@@ -12,7 +11,6 @@ body {
 	background: white;
 	height: 100%;
 	margin: 0;
-	/* overflow-x: hidden; */
 }
 
 #___gatsby, #gatsby-focus-wrapper {
@@ -20,12 +18,8 @@ body {
 }
 
 .noselect {
-	-webkit-user-select: none;      
+	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
-
-/* * {
-	outline: 1px solid #f00 !important;
-  } */

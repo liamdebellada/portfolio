@@ -5,6 +5,8 @@ import { graphql } from 'gatsby'
 
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
+import buildMetaTags from "~/seo/buildMetaTags"
+
 import Heading from '~/components/heading/heading'
 import ScreenDeck from '~/components/screenDeck/screenDeck'
 import Slide from '~/components/slide/slide'
@@ -15,7 +17,6 @@ import type { ProjectItem } from "github-types"
 
 import './index.css'
 import '@splidejs/splide/dist/css/themes/splide-default.min.css'
-import buildMetaTags from "~/seo/buildMetaTags"
 
 type HomeProps = PageProps<{
     Projects: Array<ProjectItem>

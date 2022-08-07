@@ -5,6 +5,7 @@ import { useWindowSize, useTimeout } from "usehooks-ts"
 import Bar from '~/components/nav/nav'
 import Splash from '~/components/splash/splash'
 
+import { IconNames } from "~/components/Icon"
 import type { FunctionComponent, ReactNode } from "react"
 
 import '../styles/global.css'
@@ -18,17 +19,17 @@ type LayoutProps = {
 const Routes = [
   {
     name: "home",
-    icon: "home",
+    icon: IconNames.home,
     route: "/"
   },
   {
     name: "projects",
-    icon: "integration_instructions",
+    icon: IconNames.integrationInstructions,
     route: "/projects/"
   },
   {
     name: "contact",
-    icon: "account_box",
+    icon: IconNames.accountBox,
     route: "/contact/"
   }
 ]

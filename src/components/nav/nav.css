@@ -16,11 +16,11 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	color: #4D4D4D;
+	fill: #4D4D4D;
 }
 
 .navItemActive {
-	color: black;
+	fill: black;
 }
 
 .smallSize {

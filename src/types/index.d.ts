@@ -14,3 +14,8 @@ declare module '@splidejs/react-splide' {
     export const Splide: FunctionComponent<SplideProps>
     export const SplideSlide: FunctionComponent<any>
 }
+
+declare module 'icons/*.svg' {
+    import type {VoidFunctionComponent, SVGProps} from "react"
+    export const ReactComponent: VoidFunctionComponent<SVGProps<SVGSVGElement>>
+}

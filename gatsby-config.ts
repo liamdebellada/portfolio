@@ -9,6 +9,7 @@ const config: GatsbyConfig = {
   plugins: [
     'gatsby-plugin-layout',
     'gatsby-plugin-typescript',
+    'gatsby-plugin-svgr',
     {
       resolve: "gatsby-source-custom-api",
       options: {

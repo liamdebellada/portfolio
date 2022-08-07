@@ -3,6 +3,8 @@ import 'dotenv/config'
 import path from "path"
 import { Octokit } from "octokit"
 
+import TerserPlugin from "terser-webpack-plugin"
+
 import type { GatsbyNode } from 'gatsby'
 import type { ProjectItem } from "github-types"
 import type { GetResponseTypeFromEndpointMethod } from "@octokit/types"
@@ -83,8 +85,13 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        "~": path.resolve(__dirname, 'src/')
+        "~": path.resolve(__dirname, 'src/'),
+        "icons": path.resolve(__dirname, 'static/icons/')
       }
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [new TerserPlugin()]
     },
     ...(stage === "build-html" && {
       module: {

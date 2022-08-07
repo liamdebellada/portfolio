@@ -14,7 +14,8 @@
     "moduleResolution": "node",
 	"paths": {
 	  "~/*": ["src/*"],
-      "github-types": ["github-types"]
+      "github-types": ["github-types"],
+      "icons": ["static/icons/*"]
 	}
   }
 }

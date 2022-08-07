@@ -3,6 +3,8 @@ import React, {useEffect} from 'react'
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 
+import buildMetaTags from "~/seo/buildMetaTags"
+
 import Heading from '~/components/heading/heading'
 import RepoButton from '~/components/buttons/RepoButton'
 
@@ -13,7 +15,6 @@ import type { PageProps } from "gatsby"
 import type { ProjectItem } from "github-types"
 
 import './projects.css'
-import buildMetaTags from "~/seo/buildMetaTags"
 
 const AnimationVariants = {
   projects: {
