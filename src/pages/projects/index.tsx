@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
@@ -76,29 +76,39 @@ const NodeTree = ({ isLastNode }: { isLastNode: boolean }) => {
   )
 }
 
-const Project: FunctionComponent<ProjectProps> = ({ display_image, display_title, short_description, repo_url, isLastProject }) => (
-  <div id={display_title} className="contentArea">
-    <div className="progressArea">
-      <NodeTree isLastNode={isLastProject} />
-    </div>
-    <motion.div className="textArea">
-      <Heading text={display_title} options={{size: "2rem"}} />
-      <div className="contentInfo">
-        <div className="contentInfoText">
-          <p className="descriptionText projectDescription">{short_description}</p>
-        </div>
-        <div className="contentInfoImages">
-          <div className="images">
-            <img src={display_image} alt="project-screenshot" />
-          </div>
-          <div className="buttons">
-            <RepoButton link={repo_url} />
-          </div>
-        </div>
+const Project: FunctionComponent<ProjectProps> = ({ display_image, display_title, short_description, repo_url, isLastProject }) => {
+  const [imageLoaded, setImageLoaded] = useState(false)
+  return (
+    <div id={display_title} className="contentArea">
+      <div className="progressArea">
+        <NodeTree isLastNode={isLastProject}/>
       </div>
-    </motion.div>
-  </div>
-)
+      <motion.div className="textArea">
+        <Heading text={display_title} options={{size: "2rem"}}/>
+        <div className="contentInfo">
+          <div className="contentInfoText">
+            <p className="descriptionText projectDescription">{short_description}</p>
+          </div>
+          <div className="contentInfoImages">
+            <div className="images">
+              <motion.img
+                initial={{opacity: 0}}
+                transition={{ duration: 0.5 }}
+                animate={{opacity: Number(imageLoaded)}}
+                onLoad={() => setImageLoaded(true)}
+                src={display_image}
+                alt="project-screenshot"
+              />
+            </div>
+            <div className="buttons">
+              <RepoButton link={repo_url}/>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
 
 const Projects: FunctionComponent<ProjectsProps> = ({data, location}) => {
   const { Projects } = data
