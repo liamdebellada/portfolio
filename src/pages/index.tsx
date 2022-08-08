@@ -39,10 +39,10 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
         <div className="bioContent">
           <div className="descriptionSection">
             <p className="bioDescription">
-            I’m Liam. I have a passion for the art of software development, and love writing both back-end and front-end code, with an emphasis on speed.
+            I’m Liam. I have a passion for the art of software development, and love to work on front-end and back-end projects.
             </p>
             <p className="bioDescription">
-            I’m 18 Years old, and currently live in the United Kingdom. I enjoy running and the small things in life.
+            I’m 19 Years old, and currently live in the United Kingdom, working at Yoti as a full stack software dev.
             </p>
           </div>
 
@@ -85,7 +85,7 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
 
         <div className="workingText">
           <Heading text="What I've been working on?" />
-          <p className="bioDescription">My latest projects have all been open-source from conception to completion, with focus on the user experience and functionality.</p>
+          <p className="bioDescription">Currently I am working full time at Yoti, but in my spare time I like to work on small side projects to extend my programming knowledge.</p>
         </div>
       </div>
     </div>
