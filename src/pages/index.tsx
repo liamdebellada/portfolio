@@ -42,7 +42,7 @@ const Home: FunctionComponent<HomeProps> = ({ data }) => {
             I’m Liam. I have a passion for the art of software development, and love to work on front-end and back-end projects.
             </p>
             <p className="bioDescription">
-            I’m 20 Years old, and currently live in the United Kingdom, working at Yoti as a full stack software dev.
+            I live in London, United Kingdom, working at Yoti as a full stack software dev.
             </p>
           </div>
 
